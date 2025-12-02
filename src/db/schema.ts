@@ -86,9 +86,14 @@ export const product = pgTable("product", {
 	categoryId: integer("category_id")
 		.notNull()
 		.references(() => category.id),
+
+	isNew: boolean("is_new").default(false).notNull(),
+	isOnSale: boolean("is_on_sale").default(false).notNull(),
+
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
+export type Product = typeof product.$inferSelect;
 
 export const ingredient = pgTable("ingredient", {
 	id: serial("id").primaryKey(),

@@ -1,4 +1,4 @@
-export * from "./header";
-export * from "./logo-component";
-export * from "./right-side";
-export * from "./serch-input";
+export { Header } from "./header";
+export { Logo } from "./logo-component";
+export { RightSide } from "./right-side";
+export { SearchInput } from "./serch-input";

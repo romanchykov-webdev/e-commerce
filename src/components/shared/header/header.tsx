@@ -15,7 +15,7 @@ export const Header: React.FC<Props> = ({ className, hasSearch }) => {
 	const [openAuthModal, setOpenAuthModal] = useState(false);
 
 	return (
-		<div className={cn(" ", className)}>
+		<header className={cn("border-b", className)}>
 			<Container className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 py-4 md:py-8tems-center justify-between">
 				{/* Верхняя часть — логотип и поиск */}
 				<div className="flex flex-col md:flex-row md:items-center md:gap-10 w-full">
@@ -32,6 +32,6 @@ export const Header: React.FC<Props> = ({ className, hasSearch }) => {
 				{/* Правая часть (вход + корзина) */}
 				<RightSide openAuthModal={openAuthModal} setOpenAuthModal={setOpenAuthModal} hasCart={true} />
 			</Container>
-		</div>
+		</header>
 	);
 };

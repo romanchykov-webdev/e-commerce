@@ -78,6 +78,7 @@ export const category = pgTable("category", {
 	id: serial("id").primaryKey(),
 	name: text("name").notNull(),
 });
+export type Category = typeof category.$inferSelect;
 
 export const product = pgTable("product", {
 	id: serial("id").primaryKey(),
@@ -103,6 +104,7 @@ export const ingredient = pgTable("ingredient", {
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
+export type Ingredient = typeof ingredient.$inferSelect;
 
 export const productSize = pgTable("product_size", {
 	id: serial("id").primaryKey(),
@@ -133,6 +135,7 @@ export const productItem = pgTable("product_item", {
 	createdAt: timestamp("created_at").defaultNow().notNull(),
 	updatedAt: timestamp("updated_at").defaultNow().notNull(),
 });
+export type ProductItem = typeof productItem.$inferSelect;
 
 export const productToIngredient = pgTable(
 	"product_to_ingredient",
@@ -237,6 +240,13 @@ export const productRelations = relations(product, ({ one, many }) => ({
 	category: one(category, { fields: [product.categoryId], references: [category.id] }),
 	items: many(productItem),
 	ingredients: many(productToIngredient),
+}));
+
+export const productItemRelations = relations(productItem, ({ one }) => ({
+	product: one(product, {
+		fields: [productItem.productId],
+		references: [product.id],
+	}),
 }));
 
 export const productToIngredientRelations = relations(productToIngredient, ({ one }) => ({
